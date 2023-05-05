@@ -1,0 +1,1 @@
+gin --appPort 4444 --port 10444 --all -i run main.go
