@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+import About from "./pages/About";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="grid-container">
+      <header className="sticky shadow-sm">
+        <nav className="flex w-full h-full">
+          <ul className="flex w-full justify-around items-center">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-[#000] font-bold text-xl">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/nothing-here">Nothing Here</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
+      </main>
+      <footer></footer>
+    </div>
+  );
 }
 
-export default App
+function Layout() {
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+}
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
+
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
+}
+
+function NoMatch() {
+  return (
+    <div>
+      <h2>Nothing to see here!</h2>
+      <p>
+        <Link to="/">Go to the home page</Link>
+      </p>
+    </div>
+  );
+}
