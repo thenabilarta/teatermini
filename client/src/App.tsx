@@ -1,59 +1,67 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import About from "./pages/About";
+import Home from "./pages/Home";
+import React from "react";
+import Create from "./pages/Create";
+import Show from "./pages/Show";
+import Layout from "./components/Layout";
 
 export default function App() {
   return (
-    <div className="grid-container">
-      <header className="sticky shadow-sm">
-        <nav className="flex w-full h-full">
-          <ul className="flex w-full justify-around items-center">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about" className="text-[#000] font-bold text-xl">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/nothing-here">Nothing Here</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="*" element={<NoMatch />} />
-          </Route>
-        </Routes>
-      </main>
-      <footer></footer>
+    <Routes>
+      {/* <Route path="/" element={<Layout />}> */}
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <Home />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/create"
+        element={
+          <Layout>
+            <Create />
+          </Layout>
+        }
+      />
+      <Route path="dashboard" element={<Dashboard />} />
+      <Route
+        path="story/:id"
+        element={
+          <Layout>
+            <Show />
+          </Layout>
+        }
+      />
+      <Route path="login" element={<Login />} />
+      <Route path="*" element={<NoMatch />} />
+      {/* </Route> */}
+    </Routes>
+  );
+}
+
+function Login() {
+  return (
+    <div>
+      <p>Login</p>
     </div>
   );
 }
 
-function Layout() {
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
+// function Home() {
+//   return (
+//     <Layout
+//       component={
+//         <div>
+//           <p>Test</p>
+//         </div>
+//       }
+//     />
+//   );
+// }
 
 function Dashboard() {
   return (
