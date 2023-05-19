@@ -8,7 +8,7 @@ type Script struct {
 	Speaker_2        string        `json:"speaker_2"`
 	Created_by       string        `json:"created_by"`
 	Created_by_id    int           `json:"created_by_id"`
-	Created_at       int           `json:"created_at"`
+	Created_at       int64         `json:"created_at"`
 	Content          []Script_text `json:"content" gorm:"foreignKey:Script_master_id;"`
 	Value            []Fill_value  `json:"value" gorm:"foreignKey:script_id;"`
 	// Keys             []Fill_key    `json:"keys" gorm:"foreignKey:script_id;"`

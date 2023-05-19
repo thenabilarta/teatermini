@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"math"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -179,7 +180,7 @@ func ValueHandler(w http.ResponseWriter, r *http.Request) {
 		Speaker_1:        "guru",
 		Speaker_2:        "murid",
 		Created_by:       "Nabil",
-		Created_at:       1684434162472,
+		Created_at:       time.Now().UnixMilli(),
 	})
 
 	decoder := json.NewDecoder(r.Body)

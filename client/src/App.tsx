@@ -1,7 +1,5 @@
-import { Routes, Route, Outlet, Link } from "react-router-dom";
-import About from "./pages/About";
+import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
-import React from "react";
 import Create from "./pages/Create";
 import Show from "./pages/Show";
 import Layout from "./components/Layout";

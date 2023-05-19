@@ -24,9 +24,11 @@ function Story({ data }: { data: any }) {
       const result = insert(splitted, 1, textToInsert);
 
       return (
-        <p>
+        <p className="text-xs md:text-base">
           <span>{result[0]}</span>
-          <span className="font-bold underline text-lg">{result[1]}</span>
+          <span className="font-bold underline md:text-lg text-base">
+            {result[1]}
+          </span>
           <span>{result[2]}</span>
         </p>
       );
@@ -58,11 +60,15 @@ function Story({ data }: { data: any }) {
       result = insert(result, 3, textToInsert2);
 
       return (
-        <p>
-          <span>{result[0]}</span>
-          <span className="font-bold underline text-lg">{result[1]}</span>
+        <p className="text-xs md:text-base mb-4">
+          <span className="text">{result[0]}</span>
+          <span className="font-bold underline md:text-lg text-base">
+            {result[1]}
+          </span>
           <span>{result[2]}</span>
-          <span className="font-bold underline text-lg">{result[3]}</span>
+          <span className="font-bold underline md:text-lg text-base">
+            {result[3]}
+          </span>
           <span>{result[4]}</span>
         </p>
       );
@@ -72,7 +78,7 @@ function Story({ data }: { data: any }) {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full bg-white p-4 pb-10 pt-8 mb-10">
+    <div className="xl:w-full w-[90%] mx-auto bg-white p-4 pb-10 pt-8 mb-10">
       <p className="mb-10">
         Di Sekolah - Created by Nabil on{" "}
         {moment(data.created_at).format("HH:mm DD/MM/YYYY")}
@@ -80,9 +86,11 @@ function Story({ data }: { data: any }) {
 
       {data.content.map((d: any, i: number) => (
         <div className="flex mb-2" key={i}>
-          <div className="min-w-[15%] flex justify-between mr-2">
-            <p>{d.speaker === 1 ? data.speaker_1 : data.speaker_2}</p>
-            <p>:</p>
+          <div className="min-w-[15%] flex justify-between mr-2 mt-0.5">
+            <p className="text-xs md:text-base">
+              {d.speaker === 1 ? data.speaker_1 : data.speaker_2}
+            </p>
+            <p className="text-xs md:text-base">:</p>
           </div>
           {hydrateText(d.text, i, d.to_fill)}
         </div>
